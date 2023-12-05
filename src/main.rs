@@ -25,8 +25,8 @@ fn main() {
         (3, 2) => day03p2::puzzle_2(input),
         (4, 1) => day04p1::puzzle_1(input),
         (4, 2) => day04p2::puzzle_2(input),
-        (5, 1) => day05::puzzle_1(input),
-        (5, 2) => day05::puzzle_2(input),
+        (5, 1) => day05::puzzle_1(input).try_into().unwrap(),
+        (5, 2) => day05::puzzle_2(input).try_into().unwrap(),
 
         _ => panic!("No puzzle {} for day {}", puzzle, day),
     };
