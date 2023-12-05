@@ -1,23 +1,19 @@
-use std::fs::read_to_string;
-
-const FILE_PATH: &str = "input.txt";
 const VALID_DIGITS: [&str; 18] = ["one","two","three","four","five","six","seven","eight","nine","1","2","3","4","5","6","7","8","9"];
 
-fn main() {
+pub fn puzzle_2(input: String) -> i32 {
     let mut sum = 0;
 
-    let input_text = read_lines(FILE_PATH);
+    let input_text = read_lines(input);
 
     for line in input_text {
         sum += 10 * find_first_digit(&line) + find_last_digit(&line);        
     }
 
-    println!("{}", sum);
+    sum as i32
 }
 
-fn read_lines(filename: &str) -> Vec<String> {
-    read_to_string(filename) 
-        .unwrap()  // panic on possible file-reading errors
+fn read_lines(input: String) -> Vec<String> {
+    input
         .lines()  // split the string into an iterat?or of string slices
         .map(String::from)  // make each slice into a string
         .collect()  // gather them together into a vector

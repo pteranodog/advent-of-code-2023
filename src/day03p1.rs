@@ -1,9 +1,5 @@
-use std::fs::read_to_string;
-
-const FILE_PATH: &str = "input.txt";
-
-fn main() {
-    let input = read_lines(FILE_PATH);
+pub fn puzzle_1(input_string: String) -> i32 {
+    let input = read_lines(input_string);
 
     let all_numbers = get_all_numbers(input.clone());
 
@@ -11,7 +7,7 @@ fn main() {
 
     let result: i32 = find_nums_with_adj_symbols(all_numbers.clone(), all_symbols.clone()).iter().sum();
 
-    println!("{}", result);
+    result
 }
 
 #[derive(Debug)]
@@ -42,9 +38,8 @@ struct Symbol2D {
     ylocation: i32,
 }
 
-fn read_lines(filename: &str) -> Vec<String> {
-    read_to_string(filename) 
-        .unwrap()  // panic on possible file-reading errors
+fn read_lines(input: String) -> Vec<String> {
+    input
         .lines()  // split the string into an iterat?or of string slices
         .map(String::from)  // make each slice into a string
         .collect()  // gather them together into a vector

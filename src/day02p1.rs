@@ -1,20 +1,18 @@
-use std::fs::read_to_string;
+pub fn puzzle_1(input_line: String) -> i32 {
+    let red_count = 12;
+    let green_count = 13;
+    let blue_count = 14;
 
-const FILE_PATH: &str = "input.txt";
-
-
-fn main() {
-    let input_text = read_lines(FILE_PATH);
+    let input_text = read_lines(input_line);
     let all_games = parse_input(input_text);
-    let game_powers = find_game_powers(all_games);
-    let game_id_sum = sum_vector(game_powers);
+    let possible_game_indices = find_possible_games(all_games, red_count, green_count, blue_count);
+    let game_id_sum = sum_vector(possible_game_indices);
 
-    println!("{}", game_id_sum);
+    game_id_sum
 }
 
-fn read_lines(filename: &str) -> Vec<String> {
-    read_to_string(filename) 
-        .unwrap()  // panic on possible file-reading errors
+fn read_lines(input: String) -> Vec<String> {
+    input
         .lines()  // split the string into an iterat?or of string slices
         .map(String::from)  // make each slice into a string
         .collect()  // gather them together into a vector
@@ -24,14 +22,16 @@ fn sum_vector(vector_to_sum: Vec<i32>) -> i32 {
     vector_to_sum.iter().sum()
 }
 
-fn find_game_powers(game_list: Vec<Vec<i32>>) -> Vec<i32> {
-    let mut game_powers: Vec<i32> = Vec::new();
+fn find_possible_games(game_list: Vec<Vec<i32>>, red: i32, green: i32, blue: i32) -> Vec<i32> {
+    let mut valid_games: Vec<i32> = Vec::new();
 
     for index in 0..game_list.len() {
-        game_powers.push(game_list[index][0] * game_list[index][1] * game_list[index][2])
+        if game_list[index][0] <= red && game_list[index][1] <= green && game_list[index][2] <= blue {
+            valid_games.push(index as i32 + 1);
+        }
     }
 
-    game_powers
+    valid_games
 }
 
 fn parse_input(full_input: Vec<String>) -> Vec<Vec<i32>> {

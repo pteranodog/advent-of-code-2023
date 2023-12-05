@@ -1,9 +1,5 @@
-use std::fs::read_to_string;
-
-const FILE_PATH: &str = "input.txt";
-
-fn main() {
-    let input = read_lines(FILE_PATH);
+pub fn puzzle_1(input_line: String) -> i32 {
+    let input = read_lines(input_line);
 
     let mut cards = Vec::new();
     for line in input {
@@ -26,13 +22,11 @@ fn main() {
         }
     }
 
-    println!("{}", sum);
-    
+    sum    
 }
 
-fn read_lines(filename: &str) -> Vec<String> {
-    read_to_string(filename) 
-        .unwrap()  // panic on possible file-reading errors
+fn read_lines(input: String) -> Vec<String> {
+    input
         .lines()  // split the string into an iterat?or of string slices
         .map(String::from)  // make each slice into a string
         .collect()  // gather them together into a vector
