@@ -113,4 +113,15 @@ mod tests {
         assert_eq!(super::day06::puzzle_2(input), 71503);
     }
 
+    #[test]
+    fn day07p1() {
+        let input = std::fs::read_to_string("input-test/day07.txt").unwrap();
+        assert_eq!(super::day07::puzzle_1(input), 6440);
+    }
+
+    #[test]
+    fn day07p2() {
+        let input = std::fs::read_to_string("input-test/day07.txt").unwrap();
+        assert_eq!(super::day07::puzzle_2(input), 5905);
+    }
 }
