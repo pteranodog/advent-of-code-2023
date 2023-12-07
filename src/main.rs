@@ -8,6 +8,7 @@ mod day04p1;
 mod day04p2;
 mod day05;
 mod day06;
+mod day07;
 
 use std::env;
 use std::fs;
@@ -30,6 +31,8 @@ fn main() {
         (5, 2) => day05::puzzle_2(input).try_into().unwrap(),
         (6, 1) => day06::puzzle_1(input),
         (6, 2) => day06::puzzle_2(input),
+        (7, 1) => day07::puzzle_1(input),
+        (7, 2) => day07::puzzle_2(input),
 
         _ => panic!("No puzzle {} for day {}", puzzle, day),
     };
@@ -109,4 +112,5 @@ mod tests {
         let input = std::fs::read_to_string("input-test/day06.txt").unwrap();
         assert_eq!(super::day06::puzzle_2(input), 71503);
     }
+
 }
