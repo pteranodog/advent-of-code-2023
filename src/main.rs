@@ -9,6 +9,7 @@ mod day04p2;
 mod day05;
 mod day06;
 mod day07;
+mod day08;
 
 use std::env;
 use std::fs;
@@ -18,21 +19,23 @@ fn main() {
     let day = args.next().unwrap().parse().unwrap();
     let puzzle = args.next().unwrap().parse().unwrap();
     let input = fs::read_to_string(args.next().unwrap()).unwrap();
-    let answer = match (day, puzzle) {
-        (1, 1) => day01p1::puzzle_1(input),
-        (1, 2) => day01p2::puzzle_2(input),
-        (2, 1) => day02p1::puzzle_1(input),
-        (2, 2) => day02p2::puzzle_2(input),
-        (3, 1) => day03p1::puzzle_1(input),
-        (3, 2) => day03p2::puzzle_2(input),
-        (4, 1) => day04p1::puzzle_1(input),
-        (4, 2) => day04p2::puzzle_2(input),
+    let answer: i128 = match (day, puzzle) {
+        (1, 1) => day01p1::puzzle_1(input).into(),
+        (1, 2) => day01p2::puzzle_2(input).into(),
+        (2, 1) => day02p1::puzzle_1(input).into(),
+        (2, 2) => day02p2::puzzle_2(input).into(),
+        (3, 1) => day03p1::puzzle_1(input).into(),
+        (3, 2) => day03p2::puzzle_2(input).into(),
+        (4, 1) => day04p1::puzzle_1(input).into(),
+        (4, 2) => day04p2::puzzle_2(input).into(),
         (5, 1) => day05::puzzle_1(input).try_into().unwrap(),
         (5, 2) => day05::puzzle_2(input).try_into().unwrap(),
-        (6, 1) => day06::puzzle_1(input),
-        (6, 2) => day06::puzzle_2(input),
-        (7, 1) => day07::puzzle_1(input),
-        (7, 2) => day07::puzzle_2(input),
+        (6, 1) => day06::puzzle_1(input).into(),
+        (6, 2) => day06::puzzle_2(input).into(),
+        (7, 1) => day07::puzzle_1(input).into(),
+        (7, 2) => day07::puzzle_2(input).into(),
+        (8, 1) => day08::puzzle_1(input).into(),
+        (8, 2) => day08::puzzle_2(input),
 
         _ => panic!("No puzzle {} for day {}", puzzle, day),
     };
@@ -123,5 +126,17 @@ mod tests {
     fn day07p2() {
         let input = std::fs::read_to_string("input-test/day07.txt").unwrap();
         assert_eq!(super::day07::puzzle_2(input), 5905);
+    }
+
+    #[test]
+    fn day08p1() {
+        let input = std::fs::read_to_string("input-test/day08p1.txt").unwrap();
+        assert_eq!(super::day08::puzzle_1(input), 6);
+    }
+
+    #[test]
+    fn day08p2() {
+        let input = std::fs::read_to_string("input-test/day08p2.txt").unwrap();
+        assert_eq!(super::day08::puzzle_2(input), 6);
     }
 }
