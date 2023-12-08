@@ -1,4 +1,4 @@
-use num::{self, traits::ops::checked};
+use num;
 
 fn read_lines(input: String) -> Vec<String> {
     input.lines().map(String::from).collect()
